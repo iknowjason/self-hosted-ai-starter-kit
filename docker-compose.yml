@@ -3,6 +3,7 @@ volumes:
   postgres_storage:
   ollama_storage:
   qdrant_storage:
+  openwebui_data:
 
 networks:
   demo:
@@ -19,9 +20,6 @@ openwebui:
     - 8080:8080
   volumes:
     - openwebui_data:/app/backend/data
-
-volumes:
-  openwebui_data:
 
 x-n8n: &service-n8n
   image: n8nio/n8n:latest
