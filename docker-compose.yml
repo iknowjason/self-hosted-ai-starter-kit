@@ -7,6 +7,22 @@ volumes:
 networks:
   demo:
 
+openwebui:
+  image: ghcr.io/open-webui/open-webui:main
+  container_name: openwebui
+  restart: unless-stopped
+  networks: ['demo']
+  environment:
+    - OLLAMA_API_BASE=http://ollama:11434
+    - ENABLE_API_KEY_AUTH=true
+  ports:
+    - 8080:8080
+  volumes:
+    - openwebui_data:/app/backend/data
+
+volumes:
+  openwebui_data:
+
 x-n8n: &service-n8n
   image: n8nio/n8n:latest
   networks: ['demo']
@@ -33,6 +49,7 @@ x-ollama: &service-ollama
     - 11434:11434
   volumes:
     - ollama_storage:/root/.ollama
+    - /models:/models
 
 x-init-ollama: &init-ollama
   image: ollama/ollama:latest
@@ -40,6 +57,7 @@ x-init-ollama: &init-ollama
   container_name: ollama-pull-llama
   volumes:
     - ollama_storage:/root/.ollama
+    - /models:/models
   entrypoint: /bin/sh
   environment:
     - OLLAMA_HOST=ollama:11434
