@@ -14,7 +14,7 @@ print("Loading model. This could take a bit of time for first time running of sc
 tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_ID,
-    dtype=torch.float16, 
+    dtype=torch.bfloat16, 
     device_map="auto"
 )
 
