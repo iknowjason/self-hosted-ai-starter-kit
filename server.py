@@ -14,7 +14,7 @@ print("Loading model.")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_ID,
-    torch_dtype=torch.bfloat16,   # or torch.float16
+    dtype=torch.float16, 
     device_map="auto"
 )
 
