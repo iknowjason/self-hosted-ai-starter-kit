@@ -10,7 +10,7 @@ MODEL_ID = "fdtn-ai/Foundation-Sec-8B-Instruct"
 # Load API key from env var
 API_KEY = os.environ.get("FOUNDATION_API_KEY", "changeme")
 
-print("Loading model.")
+print("Loading model. This could take a bit of time for first time running of script.")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_ID,
